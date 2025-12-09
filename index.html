@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Boostly — الذكاء التسويقي الفوري</title>
+<style>
+:root{
+  --accent:#6c5ce7;
+  --accent-dark:#5b48d1;
+  --bg1:#fff0f5;
+  --card:#ffffff;
+  --muted:#6b6b6b;
+  --radius:12px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+  background:linear-gradient(180deg,#fffafc 0%,#fff0f5 100%);
+  color:#222;
+  line-height:1.5;
+}
+header{
+  padding:30px 20px;
+  text-align:center;
+  background:linear-gradient(90deg,var(--accent) 0%,#ff6fb1 100%);
+  color:#fff;
+}
+header h1{margin:0 0 8px;font-size:24px;}
+header p{margin:0;opacity:0.95;font-size:15px;}
+.container{max-width:980px;margin:24px auto;padding:0 16px;}
+.hero-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:0 8px 28px rgba(16,22,60,0.06);margin-bottom:18px;}
+label{display:block;font-weight:600;margin-bottom:8px;color:#333;}
+select,input[type="text"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e6e6ee;background:#fff;font-size:15px;outline:none;margin-bottom:12px;}
+select:focus,input:focus{box-shadow:0 6px 18px rgba(108,92,231,0.06);border-color:var(--accent-dark);}
+.gen-btn{width:100%;padding:12px;background:linear-gradient(90deg,var(--accent) 0%, #ff6fb1 100%);color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;font-weight:700;}
+.gen-btn:active{transform:translateY(1px);}
+#result{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(16,22,60,0.06);min-height:160px;white-space:pre-wrap;margin-top:12px;}
+.section-title{color:var(--accent-dark);margin:0 0 6px;font-weight:700;}
+footer{margin-top:28px;padding:20px;text-align:center;color:#555;font-size:14px;}
+@media(max-width:760px){header h1{font-size:20px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Boostly — الذكاء التسويقي الفوري</h1>
+  <p>حوّل اسم منتجك إلى محتوى احترافي مؤثر خلال ثوانٍ — بدون أخطاء وبأسلوب فاخر.</p>
+</header>
+
+<main class="container">
+  <div class="hero-card">
+    <label for="category">اختر الفئة</label>
+    <select id="category">
+      <option value="عناية شخصية">عناية شخصية</option>
+      <option value="منتجات رقمية">منتجات رقمية</option>
+      <option value="هدايا">هدايا</option>
+      <option value="أدوات منزلية">أدوات منزلية</option>
+      <option value="مستلزمات الأطفال">مستلزمات الأطفال</option>
+    </select>
+
+    <label for="productName">اسم المنتج</label>
+    <input id="productName" type="text" placeholder="مثال: سيروم فيتامين C">
+
+    <button class="gen-btn" onclick="generateText()">توليد النص التسويقي</button>
+
+    <div id="result" aria-live="polite">
+      <p style="color:var(--muted);margin:0;">أدخل فئة المنتج واسم المنتج ثم اضغط "توليد النص التسويقي" لعرض المحتوى هنا.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2025 Boostly — جميع الحقوق محفوظة
+</footer>
+
+<script>
+function sanitizeInput(s){return String(s).replace(/</g,"&lt;").replace(/>/g,"&gt;").trim();}
+
+function generateText(){
+  const category = sanitizeInput(document.getElementById('category').value);
+  const product = sanitizeInput(document.getElementById('productName').value);
+  const out = document.getElementById('result');
+
+  if(!product){
+    out.innerHTML = '<p style="color:#d9534f;margin:0;">الرجاء كتابة اسم المنتج أولاً.</p>';
+    return;
+  }
+
+  const titleTemplates=[
+    `✨ اكتشف قوة ${product} — الحل المضمون ضمن فئة ${category}`,
+    `🚀 ${product} — تحول فوري في تجربة العميل ضمن ${category}`,
+    `${product} — الصياغة الاحترافية التي ترفع قيمة منتجك في ${category}`
+  ];
+
+  const problemTemplates=[
+    `هل تواجه صعوبة في إيجاد كلمات تُبرز قيمة ${product}؟`,
+    `هل يشعر الزبائن أن ${product} لا يقدّم القيمة الحقيقية رغم جودته؟`,
+    `هل وصف المنتج لا يجذب الاهتمام ولا يشرح الفائدة بوضوح؟`
+  ];
+
+  const painTemplates=[
+    `هذا يؤدي إلى ضعف التفاعل وتراجع المبيعات.`,
+    `الزبون يتصفّح دون اقتناع ويغادر الصفحة قبل الشراء.`,
+    `تضيّع ميزانية الإعلانات دون تحقيق نتائج ملموسة.`
+  ];
+
+  const solutionTemplates=[
+    `مع ${product} نقدم وصفًا مصاغًا ليحل المشكلة ويؤكد الفائدة مباشرة.`,
+    `${product} يُظهر القيمة بعبارات موجزة ومحفّزة.`,
+    `تركيبة ${product} مصممة لتلبية حاجة المستخدم بسهولة.`
+  ];
+
+  const guaranteeTemplates=[
+    `صياغة احترافية تزيد ثقة العميل وتساهم في رفع نسب التحويل.`,
+    `نتيجة واضحة في صياغة العرض تؤثر على قرار الشراء فورًا.`,
+    `نص واضح ومقنع يقلّل الشك ويزيد فرص الطلب الفوري.`
+  ];
+
+  const ctaTemplates=[
+    `✨ اطلب ${product} الآن وتمتّع بعرض خاص محدود.`,
+    `🟣 جرّبه اليوم وابدأ رؤية الفرق.`,
+    `🔔 لا تفوّت — الكمية محدودة، احجز طلبك الآن!`
+  ];
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  const title=pick(titleTemplates);
+  const problem=pick(problemTemplates);
+  const pain=pick(painTemplates);
+  const solution=pick(solutionTemplates);
+  const guarantee=pick(guaranteeTemplates);
+  const cta=pick(ctaTemplates);
+
+  const resultHTML=`
+    <h3 class="section-title">العنوان:</h3><p>${title}</p>
+    <h3 class="section-title">مشكلة شائعة:</h3><p>${problem}</p>
+    <h3 class="section-title">الألم:</h3><p>${pain}</p>
+    <h3 class="section-title">الحل:</h3><p>${solution}</p>
+    <h3 class="section-title">الضمان:</h3><p>${guarantee}</p>
+    <h3 class="section-title">دعوة للشراء:</h3><p>${cta}</p>
+    <h3 class="section-title">منشور إنستغرام جاهز:</h3><p>${product} – سر النجاح ضمن ${category} 💖 جرّبه الآن!</p>
+    <h3 class="section-title">إعلان واتساب جاهز:</h3><p>لا تفوّت فرصة الحصول على ${product} ضمن ${category} – أفضل خيار لك! 💕</p>
+  `;
+
+  out.innerHTML = resultHTML;
+  out.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+
+</body>
+</html>
